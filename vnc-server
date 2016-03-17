@@ -1,0 +1,24 @@
+PROG=/usr/bin/x11vnc
+PROGARGS="-xkb -forever -noxrecord -noxfixes -noxdamage -display :1 -auth /var/run/lightdm/root/:0 -usepw"
+PIDFILE=/var/run/PROG.pid
+case "$1" in
+	start)
+		echo -n "starting vnc server"
+		start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $PROG -- $PROGARGS
+		echo "OK."
+		;;
+	stop)
+		echo -n "stopping vnc server"
+		start-stop-daemon --stop --quiet --pidfile $PIDFILE
+		echo "OK."
+		;;
+	restart)
+		$0 stop
+		$0 start
+		;;
+	*)
+				echo "Usage: /etc/init.d/$PROG {start|stop|restart}"
+				exit 1
+esac
+
+exit 0
