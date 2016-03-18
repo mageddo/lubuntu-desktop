@@ -2,3 +2,5 @@
 
 service xvfb start
 service vnc-server start
+
+bash
