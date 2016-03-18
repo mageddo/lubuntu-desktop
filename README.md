@@ -11,3 +11,7 @@
 # Connecting to server
 
 	vnc 127.0.0.1:5900
+
+the password is 
+
+	12345
