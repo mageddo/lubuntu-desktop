@@ -3,14 +3,14 @@ XVFBARGS=":1 -screen 0 1366x768x24+32"
 PIDFILE=/var/run/xvfb.pid
 case "$1" in
 	start)
-		echo -n "Starting virtual X frame buffer: Xvfb"
+		echo -n "Starting Xvfb ... "
 		start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $XVFB -- $XVFBARGS
-		echo "."
+		echo "OK."
 		;;
 	stop)
-		echo -n "Stopping virtual X frame buffer: Xvfb"
+		echo -n "Stopping Xvfb ... "
 		start-stop-daemon --stop --quiet --pidfile $PIDFILE
-		echo "."
+		echo "OK."
 		;;
 	restart)
 		$0 stop

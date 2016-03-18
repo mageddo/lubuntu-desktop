@@ -3,12 +3,12 @@ PROGARGS="-xkb -forever -noxrecord -noxfixes -noxdamage -display :1 -auth /var/r
 PIDFILE=/var/run/PROG.pid
 case "$1" in
 	start)
-		echo -n "starting vnc server"
+		echo -n "starting vnc server ... "
 		start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $PROG -- $PROGARGS
 		echo "OK."
 		;;
 	stop)
-		echo -n "stopping vnc server"
+		echo -n "stopping vnc server ... "
 		start-stop-daemon --stop --quiet --pidfile $PIDFILE
 		echo "OK."
 		;;
