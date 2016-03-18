@@ -1,15 +1,12 @@
-PROG=/usr/bin/x11vnc
-PROGARGS="-xkb -forever -noxrecord -noxfixes -noxdamage -display :1 -auth /var/run/lightdm/root/:0 -usepw"
-PIDFILE=/var/run/PROG.pid
 case "$1" in
 	start)
 		echo -n "starting vnc server ... "
-		start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $PROG -- $PROGARGS
+		/usr/bin/x11vnc -xkb -forever -bg -noxrecord -noxfixes -noxdamage -display :0 -auth /var/run/lightdm/root/:0 -usepw
 		echo "OK."
 		;;
 	stop)
 		echo -n "stopping vnc server ... "
-		start-stop-daemon --stop --quiet --pidfile $PIDFILE
+		/usr/bin/x11vnc -remote stop
 		echo "OK."
 		;;
 	restart)
@@ -17,7 +14,7 @@ case "$1" in
 		$0 start
 		;;
 	*)
-				echo "Usage: /etc/init.d/$PROG {start|stop|restart}"
+				echo "Usage: /etc/init.d/vnc-server {start|stop|restart}"
 				exit 1
 esac
 

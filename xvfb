@@ -1,10 +1,11 @@
 XVFB=/usr/bin/Xvfb
-XVFBARGS=":1 -screen 0 1366x768x24+32"
+XVFBARGS=":0 -screen 0 1366x768x24+32"
 PIDFILE=/var/run/xvfb.pid
 case "$1" in
 	start)
 		echo -n "Starting Xvfb ... "
 		start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $XVFB -- $XVFBARGS
+		sleep 3
 		echo "OK."
 		;;
 	stop)

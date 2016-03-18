@@ -1,6 +1,15 @@
 #!/bin/sh
 
+# starting fake display
 service xvfb start
-service vnc-server start
+
+# setting up lxde
+export XKL_XMODMAP_DISABLE=1
+export DISPLAY=:0
+autocutsel -fork
+exec /usr/bin/startlxde &
+
+# starting vnc server
+vnc-server start
 
 bash
