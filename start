@@ -1,4 +1,4 @@
 #!/bin/sh
 
-service xfb start
+service xvfb start
 service vnc-server start
